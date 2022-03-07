@@ -1,6 +1,6 @@
 <?php
 require_once "Account.class.php";
-require_once "Funcionario.class.php";
+require_once "Person.php";
 require_once "SalaryAccount.class.php";
 
 
@@ -43,5 +43,3 @@ class Empresa
     }
 }
 
-
-?>

@@ -4,17 +4,17 @@ require_once "Account.class.php";
 require_once "Empresa.class.php";
 require_once "SalaryAccount.class.php";
 
-class Funcionario
+class Pessoa
 {
     private $nome;
-    private $account;
     private $salario;
+    private $cpf;
 
-    public function __construct($nome, Account $account, $salario)
+    public function __construct($nome, $salario, $cpf)
     {
         $this->nome = $nome;
-        $this->account = $account;
         $this->salario = $salario;
+        $this->cpf = $cpf;
     }
 
     public function getNome()
@@ -22,15 +22,10 @@ class Funcionario
         return $this->nome;
     }
 
-    public function getAccount()
-    {
-        return $this->account;
-    }
 
     public function getSalario()
     {
         return $this->salario;
     }
-
 
 }
