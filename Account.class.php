@@ -2,36 +2,77 @@
 
 class Account
 {
-    private $number;
+    private $bank;
     private $balance;
+    private static $numberOfAccounts = 0;
+    private $accountNumber;
+    private $accountOwner;
 
-    public function __construct($number)
+    public function __construct(Bank $bank, Person $personAssociate)
     {
-        $this->number = $number;
+        $this->bank = $bank;
         $this->balance = 0;
+        $this->accountNumber = ++self::$numberOfAccounts;
+        $this->accountOwner = $personAssociate;
     }
 
-    public function deposit($value)
+
+    public function depositRequest($numberAccount, $transferValue)
+    {
+        if ($numberAccount > 0 and $transferValue > 0 and $transferValue <= $this->balance )
+        {
+            if ($this->bank->deposit($numberAccount, $transferValue))
+            {
+               $this->decreaseBalance($transferValue);
+               return true;
+            }
+        }
+        return false;
+    }
+
+    public function pixRequest($numberAccount, $transferValue)
+    {
+        if ($numberAccount > 0 and $transferValue > 0 and $transferValue <= $this->balance )
+        {
+            if ($this->bank->pix($numberAccount, $transferValue))
+            {
+                $this->decreaseBalance($transferValue);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function withdraw($withdrawValue)
+    {
+        if ($withdrawValue > 0 and $withdrawValue <= $this->balance )
+        {
+            $this->decreaseBalance($withdrawValue);
+            return true;
+        }
+        return false;
+    }
+
+    public function increaseBalance($value)
     {
         $this->balance += $value;
     }
 
-    public function withdrawMoney($value)
+    public function decreaseBalance($value)
     {
-        if ($this->balance > 0 and $this->balance >= $value) {
-            $this->balance -= $value;
-        } else {
-            echo "Saldo insuficiente, {$this->getBalanceToString()} <br>";
-        }
-    }
-
-    public function getBalanceToString()
-    {
-        return "Saldo da conta {$this->number} é de R$ " . number_format($this->balance, 2, ",", ".") . "<br>";
+        $this->balance -= $value;
     }
 
     /**
-     * @return mixed
+     * @return Bank
+     */
+    public function getBank()
+    {
+        return $this->bank;
+    }
+
+    /**
+     * @return int
      */
     public function getBalance()
     {
@@ -39,11 +80,19 @@ class Account
     }
 
     /**
-     * @param mixed $balance
+     * @return mixed
      */
-    public function setBalance($balance)
+    public function getNumberAccount()
     {
-        $this->balance = $balance;
+        return $this->accountNumber;
+    }
+
+    /**
+     * @return Person
+     */
+    public function getAccountOwner()
+    {
+        return $this->accountOwner;
     }
 
 

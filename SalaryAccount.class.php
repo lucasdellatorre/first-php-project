@@ -7,7 +7,6 @@ final class SalaryAccount extends Account
     final public function withdrawMoney($value)
     {
         parent::withdrawMoney($value);
-
     }
 
     public function getBalance()

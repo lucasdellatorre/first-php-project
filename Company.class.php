@@ -4,7 +4,7 @@ require_once "Person.php";
 require_once "SalaryAccount.class.php";
 
 
-class Empresa
+class Company
 {
     private $nomeEmpresa;
     private $saldoEmpresa;

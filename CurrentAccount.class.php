@@ -22,6 +22,3 @@ final class CurrentAccount extends Account
 
 }
 
-
-
-?>

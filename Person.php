@@ -1,10 +1,10 @@
 <?php
 
 require_once "Account.class.php";
-require_once "Empresa.class.php";
+require_once "Company.class.php";
 require_once "SalaryAccount.class.php";
 
-class Pessoa
+class Person
 {
     private $nome;
     private $salario;
@@ -26,6 +26,11 @@ class Pessoa
     public function getSalario()
     {
         return $this->salario;
+    }
+
+    public function getCpf()
+    {
+        return $this->cpf;
     }
 
 }
